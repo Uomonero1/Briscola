@@ -63,7 +63,10 @@ def mainloop(briscola: tuple, mazzo: list, carte_gioc1: list, carte_gioc2: list,
         print(f"Briscola: {briscola}")
 
         # giocata carte
-        numero1, seme1 = giocata_carte(carte_gioc1)
+        print(f"Le tue carte {carte_gioc1}")
+        giocata1 = int(input("Quale carta vuoi giocare(1,2,3): "))-1
+        numero1, seme1 = carte_gioc1[giocata1]
+        carte_gioc1.pop(giocata1)
         print(f"Il giocatore 1 gioca la carta {numero1} di {seme1}.")
         numero2, seme2 = giocata_carte(carte_gioc2)
         print(f"Il giocatore 2 gioca la carta {numero2} di {seme2}.")
@@ -80,7 +83,10 @@ def mainloop(briscola: tuple, mazzo: list, carte_gioc1: list, carte_gioc2: list,
     print(f"Briscola: {briscola}")
 
     # giocata carte
-    numero1, seme1 = giocata_carte(carte_gioc1)
+    print(f"Le tue carte {carte_gioc1}")
+    giocata1 = int(input("Quale carta vuoi giocare(1,2,3): "))-1
+    numero1, seme1 = carte_gioc1[giocata1]
+    carte_gioc1.pop(giocata1)
     print(f"Il giocatore 1 gioca la carta {numero1} di {seme1}.")
     numero2, seme2 = giocata_carte(carte_gioc2)
     print(f"Il giocatore 2 gioca la carta {numero2} di {seme2}.")
@@ -99,7 +105,7 @@ vittoria_gioc1 = 0
 pareggi = 0
 vittoria_gioc2 = 0
 
-for i in range(5):
+for i in range(1):
     print("--------------------------------------------------------------------")
     print(f"Giro {i+1}")
     briscola, mazzo, carte_gioc1, carte_gioc2, numero_carte = inizio_gioco()

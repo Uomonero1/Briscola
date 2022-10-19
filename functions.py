@@ -17,17 +17,21 @@ def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, n
         if carichi[numero1] > carichi[numero2]:
             carte_vinte1.append(carichi[numero1])
             carte_vinte1.append(carichi[numero2])
+            print("Vince il giocatore 1")
         else:
             carte_vinte2.append(carichi[numero1])
             carte_vinte2.append(carichi[numero2])
+            print("Vince il giocatore 2")
     
     else:
         if seme1 == seme_di_briscola and seme2 != seme_di_briscola:
             carte_vinte1.append(carichi[numero1])
             carte_vinte1.append(carichi[numero2])
+            print("Vince il giocatore 2")
         else:
             carte_vinte2.append(carichi[numero1])
             carte_vinte2.append(carichi[numero2])
+            print("Vince il giocatore 2")
 
 
 def calcolo_punteggio(carte_vinte1: list, carte_vinte2: list):
@@ -57,18 +61,18 @@ def calcolo_punteggio(carte_vinte1: list, carte_vinte2: list):
     if punti1 > punti2:
         vittoria1 += 1
         print(f"Vince il giocatore 1. {punti1} - {punti2}")
-        print(f"Carte1: {carte_vinte1}")
-        print(f"Carte2: {carte_vinte2}")
+        print(f"Carte1: {[x for x in carte_vinte1 if x != 0]}")
+        print(f"Carte2: {[x for x in carte_vinte2 if x != 0]}")
     elif punti1 < punti2:
         vittoria2 += 1
         print(f"Vince il giocatore 2. {punti1} - {punti2}")
-        print(f"Carte1: {carte_vinte1}")
-        print(f"Carte2: {carte_vinte2}")
+        print(f"Carte1: {[x for x in carte_vinte1 if x != 0]}")
+        print(f"Carte2: {[x for x in carte_vinte2 if x != 0]}")
     else:
         pareggio += 1
         print("Pareggio.")
-        print(f"Carte1: {carte_vinte1}")
-        print(f"Carte2: {carte_vinte2}")
+        print(f"Carte1: {[x for x in carte_vinte1 if x != 0]}")
+        print(f"Carte2: {[x for x in carte_vinte2 if x != 0]}")
 
     return(vittoria1, vittoria2, pareggio)
 
