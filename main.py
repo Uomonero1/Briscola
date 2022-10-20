@@ -1,5 +1,6 @@
 import random
-from functions import calcolo_punteggio,  giocata_cpu, pescata_carte, vittoria_mano
+from functions import calcolo_punteggio, pescata_carte, vittoria_mano, cpu
+
 
 def inizio_gioco():
     """Inizializza il gioco: crea e mescola il mazzo, sceglie la briscola,
@@ -68,7 +69,7 @@ def mainloop(briscola: tuple, mazzo: list, carte_gioc1: list, carte_gioc2: list,
         numero1, seme1 = carte_gioc1[giocata1]
         carte_gioc1.pop(giocata1)
         print(f"Il giocatore 1 gioca la carta {numero1} di {seme1}.")
-        numero2, seme2 = giocata_cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
+        numero2, seme2 = cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
         print(f"Il giocatore 2 gioca la carta {numero2} di {seme2}.")
 
         vittoria_mano(seme1, seme2, seme_di_briscola, numero1, numero2, carte_vinte1, carte_vinte2, carichi)
@@ -88,7 +89,7 @@ def mainloop(briscola: tuple, mazzo: list, carte_gioc1: list, carte_gioc2: list,
     numero1, seme1 = carte_gioc1[giocata1]
     carte_gioc1.pop(giocata1)
     print(f"Il giocatore 1 gioca la carta {numero1} di {seme1}.")
-    numero2, seme2 = giocata_cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
+    numero2, seme2 = cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
     print(f"Il giocatore 2 gioca la carta {numero2} di {seme2}.")
 
     vittoria_mano(seme1, seme2, seme_di_briscola, numero1, numero2, carte_vinte1, carte_vinte1, carichi)
@@ -100,15 +101,20 @@ def mainloop(briscola: tuple, mazzo: list, carte_gioc1: list, carte_gioc2: list,
 
     carte_rimaste_gioco = len(carte_gioc2)
     while carte_rimaste_gioco > 0:
+        print("-----------------------------------------------------")
+        print(f"Briscola: {briscola}")
+
         print(f"Le tue carte {carte_gioc1}")
         giocata1 = int(input("Quale carta vuoi giocare(1,2,3): "))-1
         numero1, seme1 = carte_gioc1[giocata1]
         carte_gioc1.pop(giocata1)
         print(f"Il giocatore 1 gioca la carta {numero1} di {seme1}.")
-        numero2, seme2 = giocata_cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
+        numero2, seme2 = cpu(carte_gioc2, (numero1, seme1), briscola, carichi)
         print(f"Il giocatore 2 gioca la carta {numero2} di {seme2}.")
         carte_rimaste_gioco -= 1
 
+        vittoria_mano(seme1, seme2, seme_di_briscola, numero1, numero2, carte_vinte1, carte_vinte1, carichi)
+        
     vittoria1, vittoria2, pareggio = calcolo_punteggio(carte_vinte1, carte_vinte2)
     return(vittoria1, vittoria2, pareggio)
 

@@ -1,5 +1,3 @@
-import random
-
 def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, numero2: int, carte_vinte1: list, carte_vinte2: list, valore: dict):
     """Popola le liste che contengono le carte vinte da ogni giocatore ad ogni mano
 
@@ -92,21 +90,41 @@ def pescata_carte(mazzo: list, carte_giocatore: list):
     carte_giocatore.append(carta)
     mazzo.pop(0)
 
-def giocata_cpu(carte_giocatore: list, giocata_avv: tuple, briscola: tuple, valori: dict):
-    seme_briscola = briscola[1]
-    num1, seme1 = giocata_avv
+def cpu(carte_giocatore: list, carta_avv: tuple, briscola: tuple, valori: dict):
+    seme_di_briscola = briscola[1]
+    numero1 = carta_avv[0]
+    seme1 = carta_avv[1]
+
     for carta in carte_giocatore:
-        if seme1 != seme_briscola and carta[1] == seme1 and carta[0] > num1:
-            carte_giocatore.remove(carta)
-            return (carta[0], carta[1])
-        elif seme1 == seme_briscola and carta[1] != seme_briscola and valori[carta[0]] < valori[num1]:
-            carte_giocatore.remove(carta)
-            return (carta[0], carta[1])
+        numero2 = carta[0]
+        seme2 = carta[1]
+        # se l'avversario ha una briscola
+        if seme1 == seme_di_briscola:
+            if seme2 == seme_di_briscola and valori[numero2] > valori[numero1]:
+                carte_giocatore.remove(carta)
+                return(carta)
+            else:
+                carta = min(carte_giocatore, key=lambda x:x[1])
+                carte_giocatore.remove(carta)
+                return(carta)
         else:
-            giocata = random.choice(carte_giocatore)
-            numero, seme = giocata
-            carte_giocatore.remove(giocata)
-            return (numero, seme)
+            # stesso seme, nessuna è briscola
+            if seme2 == seme1 and seme1 != seme_di_briscola and seme2 != seme_di_briscola:
+                if valori[numero2] > valori[numero1]:
+                    carte_giocatore.remove(carta)
+                    return(carta)
+                else:
+                    carta = min(carte_giocatore, key=lambda x:x[1])
+                    carte_giocatore.remove(carta)
+                    return(carta)
+            else: # seme diverso
+                if seme2 == seme_di_briscola:
+                    carte_giocatore.remove(carta)
+                    return(carta)
+                else:
+                    carta = min(carte_giocatore, key=lambda x:x[1])
+                    carte_giocatore.remove(carta)
+                    return(carta)
 
 
 
