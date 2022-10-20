@@ -1,4 +1,3 @@
-import random
 from functions import mainloop, inizio_gioco
 
 vittoria_gioc1 = 0
