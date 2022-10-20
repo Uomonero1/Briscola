@@ -1,5 +1,5 @@
 import random
-from functions import calcolo_punteggio, pescata_carte, prima_carta_mazzo, vittoria_mano, cpu, mainloop, inizio_gioco
+from functions import mainloop, inizio_gioco
 
 vittoria_gioc1 = 0
 pareggi = 0
