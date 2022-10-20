@@ -17,5 +17,5 @@ for i in range(1):
     else:
         pareggi += 1
 
-print("STASTICHE FINALI")    
+print("STATISTICHE FINALI")    
 print(vittoria_gioc1, pareggi, vittoria_gioc2)
