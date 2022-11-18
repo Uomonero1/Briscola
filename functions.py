@@ -1,6 +1,7 @@
 import random
 
-def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, numero2: int, carte_vinte1: list, carte_vinte2: list, valore: dict):
+def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, 
+                  numero2: int, carte_vinte1: list, carte_vinte2: list, valore: dict):
     """Popola le liste che contengono le carte vinte da ogni giocatore ad ogni mano
 
     Args:
@@ -22,7 +23,6 @@ def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, n
             carte_vinte2.append(valore[numero1])
             carte_vinte2.append(valore[numero2])
             print("Vince il giocatore 2")
-    
     else:
         if seme1 == seme_di_briscola and seme2 != seme_di_briscola:
             carte_vinte1.append(valore[numero1])
@@ -32,7 +32,7 @@ def vittoria_mano(seme1: str, seme2: str, seme_di_briscola: str, numero1: int, n
             carte_vinte2.append(valore[numero1])
             carte_vinte2.append(valore[numero2])
             print("Vince il giocatore 2")
-        else:
+        else: # nessuna carta è briscola e sono di seme diverso
             carte_vinte1.append(valore[numero1])
             carte_vinte1.append(valore[numero2])
             print("Vince il giocatore 1")
